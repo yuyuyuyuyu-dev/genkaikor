@@ -1,6 +1,7 @@
 import { Box, Button, Container, TextField, ThemeProvider, Typography } from '@mui/material'
 import type { NextPage } from 'next'
 import { useState } from 'react'
+import CustomizedSnackbars from '../components/CustomizedSnackbars'
 import theme from '../theme/theme'
 import copyToClipboard from '../utils/copyToClipboard'
 import insertDakuten from '../utils/insertDakuten'
@@ -17,14 +18,13 @@ const Home: NextPage = () => {
         >
         </TextField>
         <Typography>{outText}</Typography>
-        <Button
-          variant='contained'
+        <CustomizedSnackbars
+          buttonLabel='クリップボードにコピー'
+          snackbarMessage='コピーしました'
           onClick={() => {
             copyToClipboard(outText)
           }}
-        >
-          クリップボードにコピー
-        </Button>
+        />
       </Container>
     </ThemeProvider>
   )
