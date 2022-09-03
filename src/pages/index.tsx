@@ -1,7 +1,8 @@
-import { Box, Container, TextField, ThemeProvider, Typography } from '@mui/material'
+import { Box, Button, Container, TextField, ThemeProvider, Typography } from '@mui/material'
 import type { NextPage } from 'next'
 import { useState } from 'react'
 import theme from '../theme/theme'
+import copyToClipboard from '../utils/copyToClipboard'
 import insertDakuten from '../utils/insertDakuten'
 
 const Home: NextPage = () => {
@@ -16,6 +17,14 @@ const Home: NextPage = () => {
         >
         </TextField>
         <Typography>{outText}</Typography>
+        <Button
+          variant='contained'
+          onClick={() => {
+            copyToClipboard(outText)
+          }}
+        >
+          クリップボードにコピー
+        </Button>
       </Container>
     </ThemeProvider>
   )
