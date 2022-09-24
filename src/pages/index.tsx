@@ -22,6 +22,7 @@ const Home: NextPage = () => {
           <TextField
             label="濁点を付けたい文字を入力してください"
             multiline
+            margin='dense'
             fullWidth
             onChange={(e) => {
               setOutText(insertDakuten(e.target.value))
