@@ -20,6 +20,7 @@ const Home: NextPage = () => {
       <main>
         <Container maxWidth="xs">
           <TextField
+            fullWidth
             onChange={(e) => {
               setOutText(insertDakuten(e.target.value))
             }}
