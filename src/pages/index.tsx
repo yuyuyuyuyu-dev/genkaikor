@@ -21,6 +21,7 @@ const Home: NextPage = () => {
         <Container maxWidth="xs">
           <TextField
             label="濁点を付けたい文字を入力してください"
+            multiline
             fullWidth
             onChange={(e) => {
               setOutText(insertDakuten(e.target.value))
