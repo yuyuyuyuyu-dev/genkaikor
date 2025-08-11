@@ -9,6 +9,7 @@ import com.slack.circuit.backstack.rememberSaveableBackStack
 import com.slack.circuit.foundation.CircuitCompositionLocals
 import com.slack.circuit.foundation.NavigableCircuitContent
 import com.slack.circuit.foundation.rememberCircuitNavigator
+import dev.yuyuyuyuyu.genkaikor.di.domainModule
 import dev.yuyuyuyuyu.genkaikor.di.uiModule
 import dev.yuyuyuyuyu.genkaikor.ui.genkaikor.GenkaikorScreen
 import dev.yuyuyuyuyu.genkaikor.ui.openSourceLicenseList.OpenSourceLicenseListScreen
@@ -32,7 +33,7 @@ fun GenkaikorApp() {
     KoinApplication(
         application = {
             printLogger()
-            modules(uiModule)
+            modules(uiModule, domainModule)
         }
     ) {
         MyMaterialTheme {
