@@ -20,6 +20,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import dev.yuyuyuyuyu.genkaikor.ui.components.CopyToClipboardButton
+import genkaikor.composeapp.generated.resources.Res
+import genkaikor.composeapp.generated.resources.genkaikor_input_label
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun Genkaikor(state: GenkaikorScreen.State, modifier: Modifier = Modifier) {
@@ -42,7 +45,7 @@ fun Genkaikor(state: GenkaikorScreen.State, modifier: Modifier = Modifier) {
                         inputText = newValue
                         state.eventSink(GenkaikorScreen.Event.InputTextChanged(newValue))
                     },
-                    label = { Text("濁点をつけたいテキストを入力してください") },
+                    label = { Text(stringResource(Res.string.genkaikor_input_label)) },
                 )
 
                 Text(state.genkaiText)

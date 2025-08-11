@@ -15,7 +15,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
+import genkaikor.composeapp.generated.resources.Res
+import genkaikor.composeapp.generated.resources.copied_to_clipboard
+import genkaikor.composeapp.generated.resources.copy_to_clipboard
 import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun CopyToClipboardButton(
@@ -27,6 +31,9 @@ fun CopyToClipboardButton(
     val scope = rememberCoroutineScope()
     val clipboardManager = LocalClipboardManager.current
 
+    val copiedToClipboardMessage = stringResource(Res.string.copied_to_clipboard)
+    val copyToClipboardButtonText = stringResource(Res.string.copy_to_clipboard)
+
     Button(
         modifier = modifier,
         enabled = enabled,
@@ -34,7 +41,7 @@ fun CopyToClipboardButton(
             clipboardManager.setText(AnnotatedString(textToCopy))
             snackbarHostState?.let {
                 scope.launch {
-                    it.showSnackbar("クリップボードへコピーしました")
+                    it.showSnackbar(copiedToClipboardMessage)
                 }
             }
         },
@@ -43,8 +50,8 @@ fun CopyToClipboardButton(
             horizontalArrangement = Arrangement.spacedBy(4.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Icon(Icons.Default.ContentCopy, contentDescription = "Copy to clipboard")
-            Text("Copy to clipboard")
+            Icon(Icons.Default.ContentCopy, contentDescription = copyToClipboardButtonText)
+            Text(copyToClipboardButtonText)
         }
     }
 }
