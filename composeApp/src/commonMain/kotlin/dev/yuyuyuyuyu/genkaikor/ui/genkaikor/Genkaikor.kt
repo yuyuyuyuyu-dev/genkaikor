@@ -41,7 +41,7 @@ fun Genkaikor(state: GenkaikorScreen.State, modifier: Modifier = Modifier) = Box
 
         Button(
             content = { Text("Copy to Clipboard") },
-            onClick = { TODO() },
+            onClick = { state.eventSink(GenkaikorScreen.Event.CopyButtonClicked) },
         )
     }
 }
