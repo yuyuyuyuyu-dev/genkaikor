@@ -48,6 +48,7 @@ kotlin {
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewModel)
             implementation(libs.koin.compose.viewModel.navigation)
+            implementation(compose.materialIconsExtended)
 
             implementation(libs.myMaterialTheme)
             implementation(libs.simpleTopAppBar)
