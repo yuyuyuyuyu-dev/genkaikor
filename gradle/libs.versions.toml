@@ -7,6 +7,7 @@ kotlinx-coroutines = "1.10.2"
 
 circuit = "0.30.0"
 koin = "4.1.0"
+aboutLibraries = "12.2.4"
 
 myMaterialTheme = "0.3.0"
 simpleTopAppBar = "0.3.1"
@@ -22,6 +23,7 @@ koin-bom = { group = "io.insert-koin", name = "koin-bom", version.ref = "koin" }
 koin-compose = { group = "io.insert-koin", name = "koin-compose" }
 koin-compose-viewModel = { group = "io.insert-koin", name = "koin-compose-viewmodel" }
 koin-compose-viewModel-navigation = { group = "io.insert-koin", name = "koin-compose-viewmodel-navigation" }
+aboutlibraries-compose-m3 = { module = "com.mikepenz:aboutlibraries-compose-m3", version.ref = "aboutLibraries" }      # Material 3 UI
 
 myMaterialTheme = { group = "dev.yuyuyuyuyu", name = "mymaterialtheme", version.ref = "myMaterialTheme" }
 simpleTopAppBar = { group = "dev.yuyuyuyuyu", name = "simpletopappbar", version.ref = "simpleTopAppBar" }
@@ -31,3 +33,4 @@ composeHotReload = { id = "org.jetbrains.compose.hot-reload", version.ref = "com
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+aboutLibraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "aboutLibraries" }

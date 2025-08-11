@@ -7,6 +7,8 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeHotReload)
+
+    alias(libs.plugins.aboutLibraries)
 }
 
 kotlin {
@@ -49,6 +51,7 @@ kotlin {
             implementation(libs.koin.compose.viewModel)
             implementation(libs.koin.compose.viewModel.navigation)
             implementation(compose.materialIconsExtended)
+            implementation(libs.aboutlibraries.compose.m3)
 
             implementation(libs.myMaterialTheme)
             implementation(libs.simpleTopAppBar)
