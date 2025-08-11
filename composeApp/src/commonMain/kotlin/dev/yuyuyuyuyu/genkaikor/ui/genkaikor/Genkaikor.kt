@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -18,6 +20,8 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import dev.yuyuyuyuyu.genkaikor.ui.components.CopyToClipboardButton
 import genkaikor.composeapp.generated.resources.Res
@@ -27,6 +31,7 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun Genkaikor(state: GenkaikorScreen.State, modifier: Modifier = Modifier) {
     val snackbarHostState = remember { SnackbarHostState() }
+    val focusManager = LocalFocusManager.current
 
     Scaffold(snackbarHost = { SnackbarHost(snackbarHostState) }) { innerPadding ->
         Box(
@@ -46,6 +51,10 @@ fun Genkaikor(state: GenkaikorScreen.State, modifier: Modifier = Modifier) {
                         state.eventSink(GenkaikorScreen.Event.InputTextChanged(newValue))
                     },
                     label = { Text(stringResource(Res.string.genkaikor_input_label)) },
+                    keyboardOptions = KeyboardOptions.Default.copy(
+                        imeAction = ImeAction.Done,
+                    ),
+                    keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
                 )
 
                 Text(state.genkaiText)
