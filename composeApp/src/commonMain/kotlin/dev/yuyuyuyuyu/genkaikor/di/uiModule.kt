@@ -13,7 +13,9 @@ val uiModule = module {
     single {
         Circuit.Builder()
 
-            .addPresenter<GenkaikorScreen, GenkaikorScreen.State>(GenkaikorPresenter())
+            .addPresenter<GenkaikorScreen, GenkaikorScreen.State>(
+                GenkaikorPresenter(insertDakutenUseCase = get()),
+            )
             .addUi<GenkaikorScreen, GenkaikorScreen.State> { state, modifier ->
                 Genkaikor(state, modifier)
             }
