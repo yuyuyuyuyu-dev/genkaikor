@@ -17,12 +17,13 @@ import dev.yuyuyuyuyu.genkaikor.ui.genkaikor.GenkaikorScreen
 import dev.yuyuyuyuyu.genkaikor.ui.openSourceLicenseList.OpenSourceLicenseListScreen
 import dev.yuyuyuyuyu.mymaterialtheme.MyMaterialTheme
 import dev.yuyuyuyuyu.simpleTopAppBar.SimpleTopAppBar
-import genkaikor.composeapp.generated.resources.Res
-import genkaikor.composeapp.generated.resources.app_name
-import genkaikor.composeapp.generated.resources.open_source_licenses
+import genkaikor.shared.generated.resources.Res
+import genkaikor.shared.generated.resources.app_name
+import genkaikor.shared.generated.resources.open_source_licenses
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.KoinApplication
 import org.koin.compose.koinInject
+import org.koin.dsl.koinConfiguration
 
 @Composable
 fun GenkaikorApp() {
@@ -34,8 +35,7 @@ fun GenkaikorApp() {
     val uriHandler = LocalUriHandler.current
 
     KoinApplication(
-        application = {
-            printLogger()
+        configuration = koinConfiguration {
             modules(uiModule, domainModule)
         }
     ) {
