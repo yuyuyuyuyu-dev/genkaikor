@@ -13,7 +13,7 @@ aboutLibraries = "15.0.4"
 
 myMaterialTheme = "0.4.0"
 simpleTopAppBar = "0.4.0"
-composePwa = "0.6.1"
+composePwa = "0.7.0-alpha03"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
