@@ -37,7 +37,7 @@ fun GenkaikorApp() {
     KoinApplication(
         configuration = koinConfiguration {
             modules(uiModule, domainModule)
-        }
+        },
     ) {
         MyMaterialTheme {
             Scaffold(

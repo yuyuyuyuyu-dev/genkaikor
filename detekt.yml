@@ -1,0 +1,4 @@
+naming:
+  FunctionNaming:
+    # Composable functions are named in PascalCase by convention.
+    ignoreAnnotated: [ 'Composable' ]

@@ -12,21 +12,18 @@ import org.koin.dsl.module
 val uiModule = module {
     single {
         Circuit.Builder()
-
             .addPresenter<GenkaikorScreen, GenkaikorScreen.State>(
                 GenkaikorPresenter(insertDakutenUseCase = get()),
             )
             .addUi<GenkaikorScreen, GenkaikorScreen.State> { state, modifier ->
                 Genkaikor(state, modifier)
             }
-
             .addPresenter<OpenSourceLicenseListScreen, OpenSourceLicenseListScreen.State>(
                 OpenSourceLicenseListPresenter(),
             )
             .addUi<OpenSourceLicenseListScreen, OpenSourceLicenseListScreen.State> { _, modifier ->
                 OpenSourceLicenseList(modifier)
             }
-
             .build()
     }
 }

@@ -3,10 +3,7 @@ package dev.yuyuyuyuyu.genkaikor.ui.openSourceLicenseList
 import androidx.compose.runtime.Composable
 import com.slack.circuit.runtime.presenter.Presenter
 
-class OpenSourceLicenseListPresenter(
-) : Presenter<OpenSourceLicenseListScreen.State> {
+class OpenSourceLicenseListPresenter : Presenter<OpenSourceLicenseListScreen.State> {
     @Composable
-    override fun present(): OpenSourceLicenseListScreen.State {
-        return OpenSourceLicenseListScreen.State
-    }
+    override fun present(): OpenSourceLicenseListScreen.State = OpenSourceLicenseListScreen.State
 }
