@@ -15,9 +15,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
-import genkaikor.composeapp.generated.resources.Res
-import genkaikor.composeapp.generated.resources.copied_to_clipboard
-import genkaikor.composeapp.generated.resources.copy_to_clipboard
+import genkaikor.shared.generated.resources.Res
+import genkaikor.shared.generated.resources.copied_to_clipboard
+import genkaikor.shared.generated.resources.copy_to_clipboard
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 

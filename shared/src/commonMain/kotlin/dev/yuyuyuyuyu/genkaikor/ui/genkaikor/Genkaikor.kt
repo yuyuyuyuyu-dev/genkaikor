@@ -24,8 +24,8 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import dev.yuyuyuyuyu.genkaikor.ui.components.CopyToClipboardButton
-import genkaikor.composeapp.generated.resources.Res
-import genkaikor.composeapp.generated.resources.genkaikor_input_label
+import genkaikor.shared.generated.resources.Res
+import genkaikor.shared.generated.resources.genkaikor_input_label
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
