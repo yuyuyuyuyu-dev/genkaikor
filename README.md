@@ -8,8 +8,6 @@ This is a Kotlin Multiplatform project targeting Web, Desktop (JVM).
     the [iosMain](./shared/src/iosMain/kotlin) folder would be the right place for such calls.
     Similarly, if you want to edit the Desktop (JVM) specific part, the [jvmMain](./shared/src/jvmMain/kotlin)
     folder is the appropriate location.
-* [/desktopApp](./desktopApp/src) is the Desktop (JVM) entry point.
-* [/webApp](./webApp/src) is the Web entry point, built as a PWA.
 
 ### Running the apps
 
@@ -30,15 +28,6 @@ Use the run button in your IDE's editor gutter, or run tests using Gradle tasks:
 - Web tests:
   - Wasm target: `./gradlew :shared:wasmJsTest`
   - JS target: `./gradlew :shared:jsTest`
-
-### Open source licenses
-
-The license screen is backed by `shared/src/commonMain/composeResources/files/aboutlibraries.json`,
-which is generated rather than committed. Regenerate it with:
-
-```shell
-./gradlew :shared:exportLibraryDefinitions
-```
 
 ---
 
