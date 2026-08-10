@@ -1,0 +1,6 @@
+[*.{kt,kts}]
+# `kotlin.code.style=official` in gradle.properties comes from the Kotlin Multiplatform
+# template, so ktlint follows the same style instead of its own stricter default.
+ktlint_code_style = intellij_idea
+# Composable functions are named in PascalCase by convention.
+ktlint_function_naming_ignore_when_annotated_with = Composable
