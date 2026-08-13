@@ -1,7 +1,7 @@
 [versions]
 aboutLibraries = "15.0.4"
 androidx-lifecycle = "2.11.0"
-circuit = "0.35.1"
+circuit = "0.36.0"
 composeMultiplatform = "1.11.1"
 composePwa = "0.7.0-alpha03"
 detekt = "1.23.8"
