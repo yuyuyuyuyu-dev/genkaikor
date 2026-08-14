@@ -23,7 +23,7 @@ jobs:
           distribution: 'zulu'
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v6
 
       - name: Run Detekt
         run: ./gradlew detekt
@@ -44,7 +44,7 @@ jobs:
           distribution: 'zulu'
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v6
 
       - name: Run ktlint
         run: ./gradlew ktlintCheck
@@ -65,7 +65,7 @@ jobs:
           distribution: 'zulu'
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v6
 
       # The plugin only formats in place, so the check is that it produces no diff.
       - name: Format the version catalog
@@ -90,7 +90,7 @@ jobs:
           distribution: 'zulu'
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v6
 
       - name: Run tests
         run: ./gradlew allTests
@@ -111,7 +111,7 @@ jobs:
           distribution: 'zulu'
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v6
 
       # ComposePWA shells out to `npx workbox-cli` to generate the service worker.
       - name: Setup Node.js
