@@ -1,0 +1,35 @@
+name: Auto-merge
+
+# Dependabot pull requests cannot reach secrets from `pull_request`, and no pull request code is
+# checked out here, so running in the base branch context is safe.
+on:
+  pull_request_target:
+    branches: [ "main" ]
+
+jobs:
+  auto-merge:
+    name: Auto-merge
+    if: github.actor == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    steps:
+      # A grouped pull request reports the greatest update type it contains.
+      - name: Read the update metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v2
+
+      - name: Create an app token
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ secrets.PR_BOT_CLIENT_ID }}
+          private-key: ${{ secrets.PR_BOT_PRIVATE_KEY }}
+          permission-contents: write
+          permission-pull-requests: write
+
+      - name: Enable auto-merge
+        if: contains(fromJSON('["version-update:semver-minor", "version-update:semver-patch"]'), steps.metadata.outputs.update-type)
+        run: gh pr merge --squash --auto "${{ github.event.pull_request.html_url }}"
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
