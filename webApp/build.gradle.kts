@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
 
+    alias(libs.plugins.aboutLibraries)
     alias(libs.plugins.composePwa)
 
     alias(libs.plugins.detekt)
@@ -23,6 +24,8 @@ kotlin {
             implementation(projects.shared)
 
             implementation(libs.compose.ui)
+            implementation(libs.compose.components.resources)
+            implementation(libs.aboutlibraries.compose.core)
         }
     }
 }
@@ -36,8 +39,24 @@ detekt {
 }
 
 ktlint {
+    version = libs.versions.ktlintCli.get()
     filter {
-        // Compose Multiplatform adds its generated resource accessors to the Kotlin source sets.
-        exclude("**/generated/**")
+        val buildPath = layout.buildDirectory.get().asFile.path + File.separator
+        exclude { it.file.path.startsWith(buildPath) }
     }
+}
+
+val aboutLibrariesResources = layout.buildDirectory.dir("aboutLibraries/composeResources")
+
+aboutLibraries {
+    export {
+        outputFile = aboutLibrariesResources.map { it.file("files/aboutlibraries.json") }
+    }
+}
+
+compose.resources {
+    customDirectory(
+        sourceSetName = "commonMain",
+        directoryProvider = tasks.named("exportLibraryDefinitions").map { aboutLibrariesResources.get() },
+    )
 }

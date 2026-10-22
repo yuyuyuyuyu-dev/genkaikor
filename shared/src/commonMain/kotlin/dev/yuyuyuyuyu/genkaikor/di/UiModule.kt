@@ -21,8 +21,8 @@ val uiModule = module {
             .addPresenter<OpenSourceLicenseListScreen, OpenSourceLicenseListScreen.State>(
                 OpenSourceLicenseListPresenter(),
             )
-            .addUi<OpenSourceLicenseListScreen, OpenSourceLicenseListScreen.State> { _, modifier ->
-                OpenSourceLicenseList(modifier)
+            .addUi<OpenSourceLicenseListScreen, OpenSourceLicenseListScreen.State> { state, modifier ->
+                OpenSourceLicenseList(state.libraries, modifier)
             }
             .build()
     }
