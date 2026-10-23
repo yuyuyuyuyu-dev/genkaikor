@@ -5,5 +5,9 @@ import com.slack.circuit.runtime.presenter.Presenter
 
 class OpenSourceLicenseListPresenter : Presenter<OpenSourceLicenseListScreen.State> {
     @Composable
-    override fun present(): OpenSourceLicenseListScreen.State = OpenSourceLicenseListScreen.State
+    override fun present(): OpenSourceLicenseListScreen.State {
+        val libraries = LocalLibraries.current
+
+        return OpenSourceLicenseListScreen.State(libraries)
+    }
 }

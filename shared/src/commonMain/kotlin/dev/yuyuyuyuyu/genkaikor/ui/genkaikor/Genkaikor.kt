@@ -29,7 +29,10 @@ import genkaikor.shared.generated.resources.genkaikor_input_label
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun Genkaikor(state: GenkaikorScreen.State, modifier: Modifier = Modifier) {
+fun Genkaikor(
+    state: GenkaikorScreen.State,
+    modifier: Modifier = Modifier,
+) {
     val snackbarHostState = remember { SnackbarHostState() }
     val focusManager = LocalFocusManager.current
 
@@ -51,9 +54,10 @@ fun Genkaikor(state: GenkaikorScreen.State, modifier: Modifier = Modifier) {
                         state.eventSink(GenkaikorScreen.Event.InputTextChanged(newValue))
                     },
                     label = { Text(stringResource(Res.string.genkaikor_input_label)) },
-                    keyboardOptions = KeyboardOptions.Default.copy(
-                        imeAction = ImeAction.Done,
-                    ),
+                    keyboardOptions =
+                        KeyboardOptions.Default.copy(
+                            imeAction = ImeAction.Done,
+                        ),
                     keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
                 )
 

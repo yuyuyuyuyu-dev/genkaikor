@@ -5,7 +5,9 @@ class InsertDakutenUseCase {
         val IGNORE_LIST = listOf('゛', 'ー', '〜', '!', '?', '！', '？', '\n')
     }
 
-    operator fun invoke(text: String): String = text.map {
-        if (IGNORE_LIST.contains(it)) it else "$it゛"
-    }.joinToString("")
+    operator fun invoke(text: String): String =
+        text
+            .map {
+                if (IGNORE_LIST.contains(it)) it else "$it゛"
+            }.joinToString("")
 }

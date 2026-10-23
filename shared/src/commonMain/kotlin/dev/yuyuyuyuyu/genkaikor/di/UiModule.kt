@@ -9,21 +9,19 @@ import dev.yuyuyuyuyu.genkaikor.ui.openSourceLicenseList.OpenSourceLicenseListPr
 import dev.yuyuyuyuyu.genkaikor.ui.openSourceLicenseList.OpenSourceLicenseListScreen
 import org.koin.dsl.module
 
-val uiModule = module {
-    single {
-        Circuit.Builder()
-            .addPresenter<GenkaikorScreen, GenkaikorScreen.State>(
-                GenkaikorPresenter(insertDakutenUseCase = get()),
-            )
-            .addUi<GenkaikorScreen, GenkaikorScreen.State> { state, modifier ->
-                Genkaikor(state, modifier)
-            }
-            .addPresenter<OpenSourceLicenseListScreen, OpenSourceLicenseListScreen.State>(
-                OpenSourceLicenseListPresenter(),
-            )
-            .addUi<OpenSourceLicenseListScreen, OpenSourceLicenseListScreen.State> { _, modifier ->
-                OpenSourceLicenseList(modifier)
-            }
-            .build()
+val uiModule =
+    module {
+        single {
+            Circuit
+                .Builder()
+                .addPresenter<GenkaikorScreen, GenkaikorScreen.State>(
+                    GenkaikorPresenter(insertDakutenUseCase = get()),
+                ).addUi<GenkaikorScreen, GenkaikorScreen.State> { state, modifier ->
+                    Genkaikor(state, modifier)
+                }.addPresenter<OpenSourceLicenseListScreen, OpenSourceLicenseListScreen.State>(
+                    OpenSourceLicenseListPresenter(),
+                ).addUi<OpenSourceLicenseListScreen, OpenSourceLicenseListScreen.State> { state, modifier ->
+                    OpenSourceLicenseList(state.libraries, modifier)
+                }.build()
+        }
     }
-}
