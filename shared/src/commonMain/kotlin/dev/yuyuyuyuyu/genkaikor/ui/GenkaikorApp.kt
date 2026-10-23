@@ -38,23 +38,26 @@ fun GenkaikorApp(libraries: Libs?) {
     val uriHandler = LocalUriHandler.current
 
     KoinApplication(
-        configuration = koinConfiguration {
-            modules(uiModule, domainModule)
-        },
+        configuration =
+            koinConfiguration {
+                modules(uiModule, domainModule)
+            },
     ) {
         MyMaterialTheme {
             Scaffold(
-                modifier = Modifier.clickable(
-                    interactionSource = null,
-                    indication = null,
-                    onClick = { focusManager.clearFocus() },
-                ),
+                modifier =
+                    Modifier.clickable(
+                        interactionSource = null,
+                        indication = null,
+                        onClick = { focusManager.clearFocus() },
+                    ),
                 topBar = {
                     SimpleTopAppBar(
-                        title = when (currentScreen) {
-                            is OpenSourceLicenseListScreen -> stringResource(Res.string.open_source_licenses)
-                            else -> stringResource(Res.string.app_name)
-                        },
+                        title =
+                            when (currentScreen) {
+                                is OpenSourceLicenseListScreen -> stringResource(Res.string.open_source_licenses)
+                                else -> stringResource(Res.string.app_name)
+                            },
                         navigateBackIsPossible = backStack.size > 1,
                         onNavigateBackButtonClick = {
                             navigator.pop()

@@ -19,7 +19,10 @@ detekt {
 ktlint {
     version = libs.versions.ktlintCli.get()
     filter {
-        val buildPath = layout.buildDirectory.get().asFile.path + File.separator
+        val buildPath =
+            layout.buildDirectory
+                .get()
+                .asFile.path + File.separator
         exclude { it.file.path.startsWith(buildPath) }
     }
 }
