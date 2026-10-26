@@ -11,6 +11,8 @@ data object GenkaikorScreen : Screen {
     ) : CircuitUiState
 
     sealed class Event : CircuitUiEvent {
-        data class InputTextChanged(val newValue: String) : Event()
+        data class InputTextChanged(
+            val newValue: String,
+        ) : Event()
     }
 }

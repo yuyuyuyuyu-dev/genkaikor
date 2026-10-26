@@ -4,7 +4,7 @@ name: Auto-merge
 # checked out here, so running in the base branch context is safe.
 on:
   pull_request_target:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   auto-merge:

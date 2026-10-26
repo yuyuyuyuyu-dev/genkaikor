@@ -4,9 +4,11 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalUriHandler
+import com.mikepenz.aboutlibraries.Libs
 import com.slack.circuit.backstack.rememberSaveableBackStack
 import com.slack.circuit.foundation.CircuitCompositionLocals
 import com.slack.circuit.foundation.NavigableCircuitContent
@@ -14,6 +16,7 @@ import com.slack.circuit.foundation.rememberCircuitNavigator
 import dev.yuyuyuyuyu.genkaikor.di.domainModule
 import dev.yuyuyuyuyu.genkaikor.di.uiModule
 import dev.yuyuyuyuyu.genkaikor.ui.genkaikor.GenkaikorScreen
+import dev.yuyuyuyuyu.genkaikor.ui.openSourceLicenseList.LocalLibraries
 import dev.yuyuyuyuyu.genkaikor.ui.openSourceLicenseList.OpenSourceLicenseListScreen
 import dev.yuyuyuyuyu.mymaterialtheme.MyMaterialTheme
 import dev.yuyuyuyuyu.simpleTopAppBar.SimpleTopAppBar
@@ -26,7 +29,7 @@ import org.koin.compose.koinInject
 import org.koin.dsl.koinConfiguration
 
 @Composable
-fun GenkaikorApp() {
+fun GenkaikorApp(libraries: Libs?) {
     val backStack = rememberSaveableBackStack(root = GenkaikorScreen)
     val navigator = rememberCircuitNavigator(backStack) {}
     val currentScreen = backStack.topRecord?.screen
@@ -35,23 +38,26 @@ fun GenkaikorApp() {
     val uriHandler = LocalUriHandler.current
 
     KoinApplication(
-        configuration = koinConfiguration {
-            modules(uiModule, domainModule)
-        },
+        configuration =
+            koinConfiguration {
+                modules(uiModule, domainModule)
+            },
     ) {
         MyMaterialTheme {
             Scaffold(
-                modifier = Modifier.clickable(
-                    interactionSource = null,
-                    indication = null,
-                    onClick = { focusManager.clearFocus() },
-                ),
+                modifier =
+                    Modifier.clickable(
+                        interactionSource = null,
+                        indication = null,
+                        onClick = { focusManager.clearFocus() },
+                    ),
                 topBar = {
                     SimpleTopAppBar(
-                        title = when (currentScreen) {
-                            is OpenSourceLicenseListScreen -> stringResource(Res.string.open_source_licenses)
-                            else -> stringResource(Res.string.app_name)
-                        },
+                        title =
+                            when (currentScreen) {
+                                is OpenSourceLicenseListScreen -> stringResource(Res.string.open_source_licenses)
+                                else -> stringResource(Res.string.app_name)
+                            },
                         navigateBackIsPossible = backStack.size > 1,
                         onNavigateBackButtonClick = {
                             navigator.pop()
@@ -65,8 +71,10 @@ fun GenkaikorApp() {
                     )
                 },
             ) { innerPadding ->
-                CircuitCompositionLocals(circuit = koinInject()) {
-                    NavigableCircuitContent(navigator, backStack, Modifier.padding(innerPadding))
+                CompositionLocalProvider(LocalLibraries provides libraries) {
+                    CircuitCompositionLocals(circuit = koinInject()) {
+                        NavigableCircuitContent(navigator, backStack, Modifier.padding(innerPadding))
+                    }
                 }
             }
         }

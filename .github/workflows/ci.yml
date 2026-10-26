@@ -2,77 +2,30 @@ name: CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [main]
   pull_request:
-    branches: [ "main" ]
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions: {}
 
 jobs:
-  detekt:
-    name: Detekt
-    runs-on: ubuntu-latest
+  oxfmt:
+    name: Oxfmt
     permissions:
       contents: read
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v7
+    uses: yuyuyuyuyu-dev/repo-config/.github/workflows/oxfmt.yml@main
 
-      - name: Setup JDK
-        uses: actions/setup-java@v6
-        with:
-          java-version: '21'
-          distribution: 'zulu'
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v6
-
-      - name: Run Detekt
-        run: ./gradlew detekt
-
-  ktlint:
-    name: ktlint
-    runs-on: ubuntu-latest
+  kotlin-lint:
+    name: Kotlin lint
     permissions:
       contents: read
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-
-      - name: Setup JDK
-        uses: actions/setup-java@v6
-        with:
-          java-version: '21'
-          distribution: 'zulu'
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v6
-
-      - name: Run ktlint
-        run: ./gradlew ktlintCheck
-
-  version-catalog:
-    name: Version Catalog
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-
-      - name: Setup JDK
-        uses: actions/setup-java@v6
-        with:
-          java-version: '21'
-          distribution: 'zulu'
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v6
-
-      # The plugin only formats in place, so the check is that it produces no diff.
-      - name: Format the version catalog
-        run: ./gradlew versionCatalogFormat
-
-      - name: Check the version catalog is formatted
-        run: git diff --exit-code gradle/libs.versions.toml
+    uses: yuyuyuyuyu-dev/repo-config/.github/workflows/kotlin-lint.yml@main
+    with:
+      compose-multiplatform: true
 
   tests:
     name: Tests
@@ -80,17 +33,15 @@ jobs:
     permissions:
       contents: read
     steps:
-      - name: Checkout
+      - name: Check out the repository
         uses: actions/checkout@v7
-
-      - name: Setup JDK
-        uses: actions/setup-java@v6
         with:
-          java-version: '21'
-          distribution: 'zulu'
+          persist-credentials: false
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v6
+      - name: Set up the JDK and Gradle
+        uses: yuyuyuyuyu-dev/repo-config/.github/actions/setup-jdk-and-gradle@main
+        with:
+          compose-multiplatform: true
 
       - name: Run tests
         run: ./gradlew allTests
@@ -101,26 +52,15 @@ jobs:
     permissions:
       contents: read
     steps:
-      - name: Checkout
+      - name: Check out the repository
         uses: actions/checkout@v7
-
-      - name: Setup JDK
-        uses: actions/setup-java@v6
         with:
-          java-version: '21'
-          distribution: 'zulu'
+          persist-credentials: false
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v6
-
-      # ComposePWA shells out to `npx workbox-cli` to generate the service worker.
-      - name: Setup Node.js
-        uses: actions/setup-node@v7
+      - name: Set up the JDK and Gradle
+        uses: yuyuyuyuyu-dev/repo-config/.github/actions/setup-jdk-and-gradle@main
         with:
-          node-version: '24'
-
-      - name: Export Library Definitions
-        run: ./gradlew :shared:exportLibraryDefinitions
+          compose-multiplatform: true
 
       - name: Build
         run: ./gradlew :webApp:wasmJsBrowserDistribution
