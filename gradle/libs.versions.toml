@@ -14,7 +14,7 @@ ktlintCli = "1.8.0"
 materialIconsExtended = "1.7.3"
 myMaterialTheme = "0.4.0"
 simpleTopAppBar = "0.4.0"
-versionCatalogUpdate = "1.1.1"
+versionCatalogUpdate = "1.1.2"
 
 [libraries]
 aboutlibraries-compose-core = { module = "com.mikepenz:aboutlibraries-compose-core", version.ref = "aboutLibraries" }
