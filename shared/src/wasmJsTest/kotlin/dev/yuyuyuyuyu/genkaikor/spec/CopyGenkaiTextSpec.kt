@@ -18,7 +18,7 @@ import kotlin.test.assertEquals
 @OptIn(ExperimentalTestApi::class)
 class CopyGenkaiTextSpec {
     @Test
-    fun `should copy the text with dakuten when Kotlin is typed and the copy button is pressed`() =
+    fun `should copy the typed text with dakuten when the copy button is pressed`() =
         runComposeUiTest {
             // Arrange
             recordTextWrittenToClipboard()
@@ -27,11 +27,11 @@ class CopyGenkaiTextSpec {
             }
 
             // Act
-            onNode(hasSetTextAction()).performTextInput("Kotlin")
+            onNode(hasSetTextAction()).performTextInput("ことりんっっっ！")
             onNodeWithText(getString(Res.string.copy_to_clipboard)).performClick()
 
             // Assert
-            assertEquals("K゛o゛t゛l゛i゛n゛", textWrittenToClipboard())
+            assertEquals("こ゛と゛り゛ん゛っ゛っ゛っ゛！", textWrittenToClipboard())
             onNodeWithText(getString(Res.string.copied_to_clipboard)).assertExists()
         }
 }
