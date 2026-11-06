@@ -2,10 +2,12 @@ package dev.yuyuyuyuyu.genkaikor.spec
 
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.hasSetTextAction
+import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.v2.runComposeUiTest
+import androidx.compose.ui.test.waitUntilExactlyOneExists
 import dev.yuyuyuyuyu.genkaikor.ui.GenkaikorApp
 import genkaikor.shared.generated.resources.Res
 import genkaikor.shared.generated.resources.copied_to_clipboard
@@ -28,11 +30,12 @@ class CopyGenkaiTextSpec {
 
             // Act
             onNode(hasSetTextAction()).performTextInput("ことりんっっっ！")
+            waitUntilExactlyOneExists(hasText(getString(Res.string.copy_to_clipboard)))
             onNodeWithText(getString(Res.string.copy_to_clipboard)).performClick()
 
             // Assert
             assertEquals("こ゛と゛り゛ん゛っ゛っ゛っ゛！", textWrittenToClipboard())
-            onNodeWithText(getString(Res.string.copied_to_clipboard)).assertExists()
+            waitUntilExactlyOneExists(hasText(getString(Res.string.copied_to_clipboard)))
         }
 }
 
