@@ -1,27 +1,10 @@
 package dev.yuyuyuyuyu.genkaikor.di
 
-import com.slack.circuit.foundation.Circuit
-import dev.yuyuyuyuyu.genkaikor.ui.genkaikor.Genkaikor
-import dev.yuyuyuyuyu.genkaikor.ui.genkaikor.GenkaikorPresenter
-import dev.yuyuyuyuyu.genkaikor.ui.genkaikor.GenkaikorScreen
-import dev.yuyuyuyuyu.genkaikor.ui.openSourceLicenseList.OpenSourceLicenseList
-import dev.yuyuyuyuyu.genkaikor.ui.openSourceLicenseList.OpenSourceLicenseListPresenter
-import dev.yuyuyuyuyu.genkaikor.ui.openSourceLicenseList.OpenSourceLicenseListScreen
+import dev.yuyuyuyuyu.genkaikor.ui.genkaikor.GenkaikorViewModel
+import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
 
 val uiModule =
     module {
-        single {
-            Circuit
-                .Builder()
-                .addPresenter<GenkaikorScreen, GenkaikorScreen.State>(
-                    GenkaikorPresenter(insertDakutenUseCase = get()),
-                ).addUi<GenkaikorScreen, GenkaikorScreen.State> { state, modifier ->
-                    Genkaikor(state, modifier)
-                }.addPresenter<OpenSourceLicenseListScreen, OpenSourceLicenseListScreen.State>(
-                    OpenSourceLicenseListPresenter(),
-                ).addUi<OpenSourceLicenseListScreen, OpenSourceLicenseListScreen.State> { state, modifier ->
-                    OpenSourceLicenseList(state.libraries, modifier)
-                }.build()
-        }
+        viewModelOf(::GenkaikorViewModel)
     }

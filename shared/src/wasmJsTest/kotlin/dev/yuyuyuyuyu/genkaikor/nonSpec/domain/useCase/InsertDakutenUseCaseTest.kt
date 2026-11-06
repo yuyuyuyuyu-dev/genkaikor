@@ -1,5 +1,6 @@
-package dev.yuyuyuyuyu.genkaikor.domain.useCase
+package dev.yuyuyuyuyu.genkaikor.nonSpec.domain.useCase
 
+import dev.yuyuyuyuyu.genkaikor.domain.useCase.InsertDakutenUseCase
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
