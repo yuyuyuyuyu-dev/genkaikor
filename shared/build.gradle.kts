@@ -40,7 +40,7 @@ kotlin {
             implementation(libs.myMaterialTheme)
             implementation(libs.simpleTopAppBar)
         }
-        commonTest.dependencies {
+        wasmJsTest.dependencies {
             implementation(libs.kotlin.test)
             implementation(libs.compose.uiTest)
         }
