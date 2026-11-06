@@ -40,16 +40,15 @@ class CopyGenkaiTextSpec {
 }
 
 @OptIn(ExperimentalWasmJsInterop::class)
-@JsFun(
-    """() => {
-        navigator.clipboard.writeText = (text) => {
-            globalThis.textWrittenToClipboard = text;
-            return Promise.resolve();
-        };
-    }""",
-)
-private external fun recordTextWrittenToClipboard()
+private fun recordTextWrittenToClipboard(): Unit =
+    js(
+        """{
+            navigator.clipboard.writeText = (text) => {
+                globalThis.textWrittenToClipboard = text;
+                return Promise.resolve();
+            };
+        }""",
+    )
 
 @OptIn(ExperimentalWasmJsInterop::class)
-@JsFun("() => globalThis.textWrittenToClipboard ?? null")
-private external fun textWrittenToClipboard(): String?
+private fun textWrittenToClipboard(): String? = js("globalThis.textWrittenToClipboard ?? null")

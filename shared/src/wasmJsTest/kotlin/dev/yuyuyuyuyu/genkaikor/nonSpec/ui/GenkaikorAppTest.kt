@@ -125,16 +125,15 @@ class GenkaikorAppTest {
 }
 
 @OptIn(ExperimentalWasmJsInterop::class)
-@JsFun(
-    """() => {
-        window.open = (url) => {
-            globalThis.openedUrl = url;
-            return null;
-        };
-    }""",
-)
-private external fun recordOpenedUrl()
+private fun recordOpenedUrl(): Unit =
+    js(
+        """{
+            window.open = (url) => {
+                globalThis.openedUrl = url;
+                return null;
+            };
+        }""",
+    )
 
 @OptIn(ExperimentalWasmJsInterop::class)
-@JsFun("() => globalThis.openedUrl ?? null")
-private external fun openedUrl(): String?
+private fun openedUrl(): String? = js("globalThis.openedUrl ?? null")
