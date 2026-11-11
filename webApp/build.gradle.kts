@@ -27,6 +27,10 @@ kotlin {
             implementation(libs.compose.components.resources)
             implementation(libs.aboutlibraries.compose.core)
         }
+        wasmJsTest.dependencies {
+            implementation(libs.kotlin.test)
+            implementation(libs.compose.uiTest)
+        }
     }
 }
 
