@@ -17,7 +17,15 @@ Use the run configurations provided by the run widget in your IDE's toolbar. You
 
 Use the run button in your IDE's editor gutter, or run tests using Gradle tasks:
 
-- Web tests: `./gradlew :shared:wasmJsTest`
+- Web tests: `./gradlew wasmJsTest`
+
+The browser specs run the built web app in Google Chrome, which has to be installed:
+
+```bash
+./gradlew :webApp:wasmJsBrowserDistribution
+npm ci
+npm run playwright -- test
+```
 
 ---
 

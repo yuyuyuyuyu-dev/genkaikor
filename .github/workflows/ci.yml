@@ -64,3 +64,34 @@ jobs:
 
       - name: Build
         run: ./gradlew :webApp:wasmJsBrowserDistribution
+
+  browser-specs:
+    name: Browser specs
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up the JDK and Gradle
+        uses: yuyuyuyuyu-dev/repo-config/.github/actions/setup-jdk-and-gradle@main
+        with:
+          compose-multiplatform: true
+
+      - name: Build
+        run: ./gradlew :webApp:wasmJsBrowserDistribution
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          package-manager-cache: false
+
+      - name: Install Playwright
+        run: npm ci
+
+      - name: Run the browser specs
+        run: npm run playwright -- test
