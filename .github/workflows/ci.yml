@@ -65,8 +65,8 @@ jobs:
       - name: Build
         run: ./gradlew :webApp:wasmJsBrowserDistribution
 
-  browser-specs:
-    name: Browser specs
+  e2e-tests:
+    name: E2E tests
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -93,5 +93,5 @@ jobs:
       - name: Install Playwright
         run: npm ci
 
-      - name: Run the browser specs
+      - name: Run the E2E tests
         run: npm run playwright -- test

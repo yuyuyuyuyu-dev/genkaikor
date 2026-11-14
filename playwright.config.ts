@@ -3,7 +3,7 @@ import { defineConfig } from "@playwright/test";
 const appUrl = "http://localhost:4173";
 
 export default defineConfig({
-	testDir: "specs",
+	testDir: "e2e",
 	forbidOnly: !!process.env.CI,
 	use: {
 		baseURL: appUrl,

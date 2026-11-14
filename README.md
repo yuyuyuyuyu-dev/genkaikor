@@ -19,7 +19,7 @@ Use the run button in your IDE's editor gutter, or run tests using Gradle tasks:
 
 - Web tests: `./gradlew wasmJsTest`
 
-The browser specs run the built web app in Google Chrome, which has to be installed:
+The E2E tests in [e2e](./e2e) run the built web app in Google Chrome, which has to be installed. The specifications among them are in [e2e/specs](./e2e/specs).
 
 ```bash
 ./gradlew :webApp:wasmJsBrowserDistribution
