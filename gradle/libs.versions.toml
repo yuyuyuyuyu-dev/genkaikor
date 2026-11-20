@@ -11,7 +11,7 @@ ktlintCli = "1.8.0"
 # material-icons-extended is no longer published alongside Compose Multiplatform releases
 materialIconsExtended = "1.7.3"
 myMaterialTheme = "0.4.0"
-navigation3 = "1.2.0"
+navigation3 = "1.2.0-rc01"
 simpleTopAppBar = "0.4.0"
 versionCatalogUpdate = "1.1.2"
 
