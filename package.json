@@ -5,7 +5,7 @@
 		"playwright": "playwright"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.6.8",
+		"@biomejs/biome": "2.6.9",
 		"@playwright/test": "1.65.1",
 		"serve": "14.2.8"
 	}
