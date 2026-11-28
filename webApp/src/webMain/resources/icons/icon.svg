@@ -1,0 +1,25 @@
+<svg
+	xmlns="http://www.w3.org/2000/svg"
+	viewBox="0 0 512 512"
+	role="img"
+	aria-label="Genkaikor"
+>
+	<rect width="512" height="512" fill="#F26B1D" />
+	<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+		<path
+			d="M126 196 H306 C295 236 270 264 236 284"
+			stroke="#FFF8F5"
+			stroke-width="46"
+		/>
+		<path
+			d="M214 236 C216 300 199 345 150 378"
+			stroke="#FFF8F5"
+			stroke-width="46"
+		/>
+		<path
+			d="M344 150 L360 196 M386 140 L402 186"
+			stroke="#19120C"
+			stroke-width="28"
+		/>
+	</g>
+</svg>
